@@ -1,14 +1,11 @@
 package com.bangaloretalkies.corehacker.cheinthusanfiretv;
 
 import android.os.AsyncTask;
-import android.support.v17.leanback.widget.ArrayObjectAdapter;
-import android.support.v17.leanback.widget.HeaderItem;
 import android.util.Log;
 
 import com.bangaloretalkies.corehacker.cheinthusanfiretv.einthusan.ChEinthusanSearch;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,8 +24,6 @@ public final class MovieList implements Serializable {
             "Marathi"*/
     };
 
-    public List<Movie> list;
-
     public HashMap<String, List<Movie>> latestMoviesMap;
 
     public MovieList () {
@@ -42,31 +37,6 @@ public final class MovieList implements Serializable {
             latestMoviesAsyncTask.setLanguage(lang.toLowerCase());
             latestMoviesAsyncTask.execute(true);
         }
-    }
-
-    public List<Movie> setupMovies() {
-        list = new ArrayList<Movie>();
-        String title[] = {
-                "Ab Tak Chhappan",
-        };
-
-        String description = "";
-
-        String videoUrl[] = {
-                "http://50.97.232.173/einthusancom/cold/D5166.mp4.m3u8?st=bAVXoYC3xUgLmrRASN430A&e=1469058943" +
-                        "",
-        };
-        String bgImageUrl[] = {
-                "http://www.einthusan.com/images/covers/Ab-Tak-Chhappan.jpg",
-        };
-        String cardImageUrl[] = {
-                "http://www.einthusan.com/images/covers/Ab-Tak-Chhappan.jpg",
-        };
-
-        list.add(buildMovieInfo("category", title[0],
-                description, "Studio Zero", videoUrl[0], cardImageUrl[0], bgImageUrl[0]));
-
-        return list;
     }
 
     public List <Movie> getMovieListByLanguage (String lang) {
@@ -94,22 +64,6 @@ public final class MovieList implements Serializable {
         }
         Log.v(TAG, "List size: " + list.size());
         return list;
-    }
-
-    private Movie buildMovieInfo(String category, String title,
-                                        String description, String studio, String videoUrl, String cardImageUrl,
-                                        String bgImageUrl) {
-        Movie movie = new Movie();
-        movie.setId(Movie.getCount());
-        Movie.incCount();
-        movie.setTitle(title);
-        movie.setDescription(description);
-        movie.setStudio(studio);
-        movie.setCategory(category);
-        movie.setCardImageUrl(cardImageUrl);
-        movie.setBackgroundImageUrl(bgImageUrl);
-        movie.setVideoUrl(videoUrl);
-        return movie;
     }
 
     public class LatestMoviesAsyncTask extends AsyncTask<Boolean, Integer, Boolean> {

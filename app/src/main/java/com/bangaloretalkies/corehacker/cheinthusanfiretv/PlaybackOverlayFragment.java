@@ -106,13 +106,13 @@ public class PlaybackOverlayFragment extends android.support.v17.leanback.app.Pl
 
         mItems = new ArrayList<Movie>();
         mSelectedMovie = (Movie) getActivity()
-                .getIntent().getSerializableExtra(DetailsActivity.MOVIE);
+                .getIntent().getSerializableExtra(PlaybackOverlayActivity.MOVIE);
 
         //movieList = (MovieList)  getActivity()
         //        .getIntent().getSerializableExtra(DetailsActivity.LATEST_MOVIES);
 
         currentLang = (String) getActivity()
-                .getIntent().getSerializableExtra(DetailsActivity.CURRENT_LANG);
+                .getIntent().getSerializableExtra(PlaybackOverlayActivity.CURRENT_LANG);
 
         Log.d (TAG, "currentLang: " + currentLang);
 

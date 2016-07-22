@@ -37,6 +37,10 @@ public class PlaybackOverlayActivity extends Activity implements
         PlaybackOverlayFragment.OnPlayPauseClickedListener {
     private static final String TAG = "PlaybackOverlayActivity";
 
+    public static final String MOVIE = "Movie";
+    public static final String LATEST_MOVIES = "LatestMovies";
+    public static final String CURRENT_LANG = "CurrentLang";
+
     // private VideoView mVideoView;
     private EMVideoView mVideoView;
     private LeanbackPlaybackState mPlaybackState = LeanbackPlaybackState.IDLE;

@@ -54,11 +54,6 @@ public class ChEinthusanSearch {
         Elements movieCoversUrls = movieCovers.select("img");
         Log.d (TAG, "Num movie covers: " + movieCoversUrls.size());
 
-/*        for (Element movieCoversUrl : movieCoversUrls) {
-            String imgAbsUrl = movieCoversUrl.attr("src");
-            Log.d(TAG, "Movie Cover URL: " + imgAbsUrl);
-        }*/
-
         /*
         <div class="movie-description">
             <h1 class="seo-h1">Sarbjit Hindi Movie Online</h1>
@@ -178,8 +173,6 @@ public class ChEinthusanSearch {
             e.printStackTrace();
         }
 
-        // Log.d(TAG, "Response: " + response.toString());
-
         html = response.toString();
         return html;
     }
@@ -203,7 +196,6 @@ public class ChEinthusanSearch {
             Log.d(TAG, " * a: <" + link.attr("href") + ">  (" + link.text() + ")");
 
             Uri uri = Uri.parse(link.attr("href"));
-            // Set<String> args = uri.getQueryParameterNames();
             String movieId = uri.getQueryParameter("id");
             String movieName = uri.getQueryParameter("hindimoviesonline");
             String movieLang = uri.getQueryParameter("lang");
@@ -232,6 +224,9 @@ public class ChEinthusanSearch {
         }
 
         private void getMovieUrl () {
+            /*
+            http://cdn.einthusan.com/geturl/" + movieId + "/hd/San%2CDallas%2CToronto%2CWashington%2CLondon%2CSydney/
+             */
             String url = E_MOVIE_GET_URL_PREFIX + id + E_MOVIE_GET_URL_SUFFFIX;
             Log.v(TAG, "Get Movie URL URL: " + url);
             String html = getHTML(url);
@@ -242,9 +237,6 @@ public class ChEinthusanSearch {
         @Override
         protected Boolean doInBackground(Boolean... booleen) {
             Log.v(TAG, "Latest Movies String = " + lang);
-            //String url = "http://cdn.einthusan.com/geturl/" + movieId + "/hd/San%2CDallas%2CToronto%2CWashington%2CLondon%2CSydney/";
-            // List<Movie> latestMovies = chEinthusanSearch.getLatestMovies(lang.toLowerCase());
-            //latestMoviesMap.put(lang, latestMovies);
             getMovieUrl();
             return null;
         }
