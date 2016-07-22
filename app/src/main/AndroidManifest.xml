@@ -32,7 +32,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".PlaybackOverlayActivity" />
-        <activity android:name=".BrowseErrorActivity" />
         <activity android:name=".SearchActivity" />
     </application>
 

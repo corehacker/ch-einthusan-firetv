@@ -188,14 +188,6 @@ public class MainFragment extends BrowseFragment {
                 intent.putExtra(PlaybackOverlayActivity.MOVIE, movie);
                 intent.putExtra(PlaybackOverlayActivity.CURRENT_LANG, "hindi");
                 getActivity().startActivity(intent);
-            } else if (item instanceof String) {
-                if (((String) item).indexOf(getString(R.string.error_fragment)) >= 0) {
-                    Intent intent = new Intent(getActivity(), BrowseErrorActivity.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getActivity(), ((String) item), Toast.LENGTH_SHORT)
-                            .show();
-                }
             }
         }
     }

@@ -17,13 +17,11 @@ package com.bangaloretalkies.corehacker.cheinthusanfiretv;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.media.MediaMetadata;
-import android.media.MediaPlayer;
 import android.media.session.MediaSession;
 import android.media.session.PlaybackState;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -35,13 +33,10 @@ import com.devbrackets.android.exomedia.ui.widget.EMVideoView;
  */
 public class PlaybackOverlayActivity extends Activity implements
         PlaybackOverlayFragment.OnPlayPauseClickedListener {
-    private static final String TAG = "PlaybackOverlayActivity";
 
     public static final String MOVIE = "Movie";
-    public static final String LATEST_MOVIES = "LatestMovies";
     public static final String CURRENT_LANG = "CurrentLang";
 
-    // private VideoView mVideoView;
     private EMVideoView mVideoView;
     private LeanbackPlaybackState mPlaybackState = LeanbackPlaybackState.IDLE;
     private MediaSession mSession;
@@ -54,7 +49,6 @@ public class PlaybackOverlayActivity extends Activity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.playback_controls);
         loadViews();
-        // setupCallbacks();
         mSession = new MediaSession(this, "LeanbackSampleApp");
         mSession.setCallback(new MediaSessionCallback());
         mSession.setFlags(MediaSession.FLAG_HANDLES_MEDIA_BUTTONS |
@@ -167,51 +161,10 @@ public class PlaybackOverlayActivity extends Activity implements
     }
 
     private void loadViews() {
-        // mVideoView = (VideoView) findViewById(R.id.videoView);
         mVideoView = (EMVideoView)findViewById(R.id.videoView);
         mVideoView.setFocusable(false);
         mVideoView.setFocusableInTouchMode(false);
     }
-
-    /*
-    private void setupCallbacks() {
-
-        mVideoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-
-            @Override
-            public boolean onError(MediaPlayer mp, int what, int extra) {
-                String msg = "";
-                if (extra == MediaPlayer.MEDIA_ERROR_TIMED_OUT) {
-                    msg = getString(R.string.video_error_media_load_timeout);
-                } else if (what == MediaPlayer.MEDIA_ERROR_SERVER_DIED) {
-                    msg = getString(R.string.video_error_server_inaccessible);
-                } else {
-                    msg = getString(R.string.video_error_unknown_error);
-                }
-                mVideoView.stopPlayback();
-                mPlaybackState = LeanbackPlaybackState.IDLE;
-                return false;
-            }
-        });
-
-        mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                if (mPlaybackState == LeanbackPlaybackState.PLAYING) {
-                    mVideoView.start();
-                }
-            }
-        });
-
-        mVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                mPlaybackState = LeanbackPlaybackState.IDLE;
-            }
-        });
-
-    }
-    */
 
     @Override
     public void onResume() {
@@ -254,7 +207,7 @@ public class PlaybackOverlayActivity extends Activity implements
      * List of various states that we can be in
      */
     public enum LeanbackPlaybackState {
-        PLAYING, PAUSED, BUFFERING, IDLE
+        PLAYING, PAUSED, IDLE
     }
 
     private class MediaSessionCallback extends MediaSession.Callback {
